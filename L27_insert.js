@@ -7,16 +7,18 @@ var connection = mysql.createConnection({
 })
 connection.connect();
 
-r={};
-r.seq=1;
-r.type='T';
-r.device='102';
-r.unit='0';
-r.ip="192.168.0.2";
-r.value=10.9;
+app.get('/logone', function(req, res) {
+  r = req.query;
+  console.log("GET %j", r);
 
-var query = connection.query('insert into sensors set ?', r, function(err, rows, cols) {
-  if (err) throw err;
-  console.log("done");
-  process.exit();
+  var query = connection.query('insert into sensors set ?', r, function(err, rows, cols) {
+    if (err) throw err;
+      console.log("done");
+    });    
+  });
+
+var server = app.listen(8080, function () {
+  var host = server.address().address
+  var port = server.address().port
+  console.log('listening at http://%s:%s', host, port)
 });
