@@ -1,7 +1,7 @@
 const char* host = "api.thingspeak.com";
 String url = "/update?api_key=YOUR_API_KEY";  
 const int httpPort = 80;
-int interval = 60000;
+int interval = 15000;
 
 #include <ESP8266WiFi.h>
 #include <WiFiClientSecure.h>
@@ -10,8 +10,8 @@ const char* ssid = "Seoul IOT_2(2.4G)";
 const char* password = "12345678";
 
 String working() { 
-  int r = 50; // do some magic here!
-  return(String("field1=")+String(r));
+  int r = 10; // do some magic here!
+  return(String("field1=")+String(r++));
 }
 
 void delivering(String payload) { 
